@@ -21,9 +21,33 @@ void add(int año,char guion1, int mes, char guion2, int dia, string evento){
         cout << "Day value is invalid: " + to_string(dia) << endl;
     }
     else if(mes >=1 && mes <= 12 && dia >=1 && dia <=31 && guion1 == '-' && guion2 == '-'){
-        string año_con_zeros = to_string(año);
-        string mes_con_zeros = to_string(mes); 
-        string dia_con_zeros = to_string(dia);
+        string años = to_string(año);
+        string meses = to_string(mes); 
+        string dias = to_string(dia);
+    string fecha = años + "-" + meses + "-" + dias;
+    events[evento] = fecha;
+    }
+}
+void print(map<string, string> m) {
+    for(const auto& item : m) {
+        if(item.second > "0"){
+        string fechas = item.second;
+        string año_con_zeros, mes_con_zeros, dia_con_zeros;
+        int p = 0;
+        for(int i = 0; i < fechas.size(); ++i){
+            if(fechas[i] == '-'){
+                p += 1;
+            }
+            else if(fechas[i] != '-' && p < 1){
+                año_con_zeros += fechas[i];
+            }
+            else if(fechas[i] != '-' && p < 2){
+                mes_con_zeros += fechas[i];
+            }
+            else if( p == 2){
+                dia_con_zeros += fechas[i];
+            }
+        }
         if(año_con_zeros.size() == 3){
         año_con_zeros = "0" + año_con_zeros;
         }
@@ -39,14 +63,7 @@ void add(int año,char guion1, int mes, char guion2, int dia, string evento){
         if(dia_con_zeros.size() == 1){
         dia_con_zeros = "0" + dia_con_zeros;
         };
-    string fecha = año_con_zeros + "-" + mes_con_zeros + "-" + dia_con_zeros;
-    events[evento] = fecha;
-    }
-}
-void print(map<string, string> m) {
-    for(const auto& item : m) {
-        if(item.second > "0"){
-        cout << item.second << " " << item.first << endl;
+        cout << año_con_zeros << "-" << mes_con_zeros << "-" << dia_con_zeros << " " << item.first << endl;
         }
     }
 }
