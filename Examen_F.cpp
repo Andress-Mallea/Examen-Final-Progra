@@ -8,10 +8,11 @@
 using namespace std;
 int year, month, day;
 int Salida = 0;
-string event, date;
+string event, date, deleted_date, deleted_event;
 char guio1, guio2;
 map<string, string> events;
 map<string, string> :: iterator it ;
+map<string, string> :: iterator it2 ;
 void add(int año,char guion1, int mes, char guion2, int dia, string evento){
     
     if(mes < 1 || mes > 12){
@@ -57,6 +58,17 @@ void Find(string dates){
         }
     }
 }
+void Del_Event(string Fecha_a_Eliminar, string Evento_a_Eliminar){
+    it2 = events.find(Evento_a_Eliminar);
+    if(events.count(Evento_a_Eliminar) > '0'){
+    events.erase (it2);
+    cout << "Deleted successfully" << endl;
+    }
+    else{
+        cout << "Event not found" << endl;
+    }
+    
+}
 int main() {
     // Write C++ code here
     cout << "Elija un comado a ingresar"<< endl;
@@ -76,6 +88,9 @@ int main() {
         add(year, guio1, month, guio2, day, event);
         break;
         case 2:
+        cout << "Del";
+        cin >> deleted_date >> deleted_event;
+        Del_Event(deleted_date, deleted_event);
         break;
         case 3:
         break;
@@ -92,7 +107,7 @@ int main() {
         cout << "Unknown command: " << comando << endl;
             
     }
-    cin.clear();
+    cin.ignore(9999, '\n');
     cin >> comando;
     if(comando == 6){
             break;
