@@ -1,3 +1,4 @@
+// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <map>
 #include <vector>
@@ -50,13 +51,10 @@ void print(map<string, string> m) {
     }
 }
 void Find(string dates){
-    it = events.lower_bound(dates);
-    if(it == events.end()){
-        cout << "Event not found" << endl;
-    }
-    else{
-        cout << it->second << " " << it->first;
-        cout << endl;
+    for(auto it = events.begin(); it != events.end(); ++it){
+        if(it->second == dates){
+            cout << it-> first << endl;
+        }
     }
 }
 int main() {
@@ -76,6 +74,10 @@ int main() {
         cout << "Add ";
         cin >> year>>guio1>>month>>guio2>>day>>event;
         add(year, guio1, month, guio2, day, event);
+        break;
+        case 2:
+        break;
+        case 3:
         break;
         case 4:
         cout << "Find ";
