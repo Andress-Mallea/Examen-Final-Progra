@@ -14,7 +14,6 @@ map<string, string> events;
 map<string, string> :: iterator it ;
 map<string, string> :: iterator it2 ;
 void add(int año,char guion1, int mes, char guion2, int dia, string evento){
-    
     if(mes < 1 || mes > 12){
         cout << "Month value is invalid: " + to_string(mes) << endl;
     }
@@ -26,20 +25,20 @@ void add(int año,char guion1, int mes, char guion2, int dia, string evento){
         string mes_con_zeros = to_string(mes); 
         string dia_con_zeros = to_string(dia);
         if(año_con_zeros.size() == 3){
-        string año_con_zeros = "0" + to_string(año);
+        año_con_zeros = "0" + año_con_zeros;
         }
         else if(año_con_zeros.size() == 2){
-        string año_con_zeros = "00" + to_string(año);
+        año_con_zeros = "00" + año_con_zeros;
         }
         else if(año_con_zeros.size() == 1){
-        string año_con_zeros = "000" + to_string(año);
-        }
+        año_con_zeros = "000" + año_con_zeros;
+        };
         if(mes_con_zeros.size() ==  1){
-        string mes_con_zeros = "0" + to_string(mes);
-        }
-        if( dia_con_zeros.size() == 1){
-        string dia_con_zeros = "0" + to_string(dia);
-        }
+        mes_con_zeros = "0" + mes_con_zeros;
+        };
+        if(dia_con_zeros.size() == 1){
+        dia_con_zeros = "0" + dia_con_zeros;
+        };
     string fecha = año_con_zeros + "-" + mes_con_zeros + "-" + dia_con_zeros;
     events[evento] = fecha;
     }
@@ -60,14 +59,13 @@ void Find(string dates){
 }
 void Del_Event(string Fecha_a_Eliminar, string Evento_a_Eliminar){
     it2 = events.find(Evento_a_Eliminar);
-    if(events.count(Evento_a_Eliminar) > '0'){
+    if(events.count(Evento_a_Eliminar) > 0){
     events.erase (it2);
     cout << "Deleted successfully" << endl;
     }
     else{
         cout << "Event not found" << endl;
     }
-    
 }
 int main() {
     // Write C++ code here
