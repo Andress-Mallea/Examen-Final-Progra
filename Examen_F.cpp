@@ -6,6 +6,7 @@
 
 using namespace std;
 int year, month, day;
+int Salida = 0;
 string event;
 char guio1, guio2;
 map<string, string> events;
@@ -40,15 +41,38 @@ void add(int año,char guion1, int mes, char guion2, int dia, string evento){
     events[evento] = fecha;
     }
 }
-void print_reversed_map(map<string, string> m) {
+void print(map<string, string> m) {
     for(const auto& item : m) {
-        cout << item.first << " " << item.second << endl;
+        cout << item.second << " " << item.first << endl;
     }
 }
 int main() {
     // Write C++ code here
-    cin >> year>>guio1>>month>>guio2>>day>>event;
-    add(year, guio1, month, guio2, day, event);
-    print_reversed_map(events);
+    cout << "Elija un comado a ingresar"<< endl;
+    cout << "1.- Add" << endl;
+    cout << "2.- Print" << endl;
+    int comando;
+    cin >> comando;
+    while(comando != 6){
+    switch(comando){
+        case 1:
+        cout << "Add ";
+        cin >> year>>guio1>>month>>guio2>>day>>event;
+        add(year, guio1, month, guio2, day, event);
+        break;
+            case 2:
+            cout << "Print" << endl;
+            print(events);
+            break;
+        default:
+        cout << "Unknown command: " << comando << endl;
+            
+    }
+    cin.clear();
+    cin >> comando;
+    if(comando == 6){
+            break;
+        }
+    }
     return 0;
 }
