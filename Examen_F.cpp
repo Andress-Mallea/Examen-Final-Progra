@@ -1,4 +1,5 @@
 // Online C++ compiler to run C++ program online
+// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <map>
 #include <vector>
@@ -6,13 +7,14 @@
 #include <iomanip>
 
 using namespace std;
-int year, month, day;
+int year, month, day, events_deleted;
 int Salida = 0;
-string event, date, deleted_date, deleted_event;
+string event, date, deleted_date, deleted_event, events_to_delet;
 char guio1, guio2;
 map<string, string> events;
 map<string, string> :: iterator it ;
 map<string, string> :: iterator it2 ;
+vector<string> Events;
 void add(int año,char guion1, int mes, char guion2, int dia, string evento){
     if(mes < 1 || mes > 12){
         cout << "Month value is invalid: " + to_string(mes) << endl;
@@ -74,16 +76,41 @@ void Find(string dates){
         }
     }
 }
-void Del_Event(string Fecha_a_Eliminar, string Evento_a_Eliminar){
-    it2 = events.find(Evento_a_Eliminar);
-    if(events.count(Evento_a_Eliminar) > 0){
-    events.erase (it2);
-    cout << "Deleted successfully" << endl;
+void Del_Event(string Eventos_a_Eliminar){
+    string Evento_a_Eliminar;
+    int p = 0;
+    for(int i = 0; i < Eventos_a_Eliminar.size(); i++){
+        if(p == 1){
+            Evento_a_Eliminar += Eventos_a_Eliminar[i];
+        }
+        else if(Eventos_a_Eliminar[i] == ' '){
+            p += 1;
+        }
     }
+    if(Evento_a_Eliminar > "0"){
+        it2 = events.find(Evento_a_Eliminar);
+        if(events.count(Evento_a_Eliminar) > 0){
+            events.erase (it2);
+            cout << "Deleted successfully" << endl;
+            }
+        else{
+            cout << "Event not found" << endl;
+            }
+    }   
     else{
-        cout << "Event not found" << endl;
+        for(auto it3 = events.begin(); it3 != events.end();){
+            if(it3->second == Eventos_a_Eliminar){
+                events.erase(it3++);
+                events_deleted += 1;
+            }
+            else{
+                ++it3;
+            }
+       
+        }
+        cout << "Deleted " << events_deleted  << " events" << endl;
     }
-}
+    }
 int main() {
     // Write C++ code here
     cout << "Elija un comado a ingresar"<< endl;
@@ -94,8 +121,12 @@ int main() {
     cout << "5.- Print Mostrar las fechas de eventos" << endl;
     cout << "6.- Exit" << endl;
     int comando;
-    cin >> comando;
     while(comando != 6){
+        cin.ignore(10, '\n');
+    cin >> comando;
+    if(comando == 6){
+            break;
+        }
     switch(comando){
         case 1:
         cout << "Add ";
@@ -103,11 +134,13 @@ int main() {
         add(year, guio1, month, guio2, day, event);
         break;
         case 2:
-        cout << "Del";
-        cin >> deleted_date >> deleted_event;
-        Del_Event(deleted_date, deleted_event);
+        cout << "Del ";
+        cin.ignore();
+        getline(cin, events_to_delet);
+        Del_Event(events_to_delet);
         break;
         case 3:
+        cout << "Del ";
         break;
         case 4:
         cout << "Find ";
@@ -122,11 +155,6 @@ int main() {
         cout << "Unknown command: " << comando << endl;
             
     }
-    cin.ignore(9999, '\n');
-    cin >> comando;
-    if(comando == 6){
-            break;
-        }
     }
     return 0;
 }
