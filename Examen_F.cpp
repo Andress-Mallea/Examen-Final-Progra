@@ -1,5 +1,3 @@
-// Online C++ compiler to run C++ program online
-// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <map>
 #include <vector>
@@ -10,7 +8,7 @@
 using namespace std;
 int year, month, day, events_deleted;
 int Salida = 0;
-string event, date, deleted_date, deleted_event, events_to_delet, Comando, Fechas, year2, month2, days2, event2;
+string event, date, deleted_date, deleted_event, events_to_delet, Comando, Fechas, year2, month2, days2, event2, comando2;
 char guio1, guio2 ,guion4,guion3,espacio ;
 map<string, string> events;
 map<string, string> :: iterator it ;
@@ -69,7 +67,7 @@ void print(map<string, string> m) {
         if(dia_con_zeros.size() == 1){
         dia_con_zeros = "0" + dia_con_zeros;
         };
-        cout << año_con_zeros << "-" << mes_con_zeros << "-" << dia_con_zeros << " " << item.first << endl;
+        cout << año_con_zeros << "-" << mes_con_zeros << "-" << dia_con_zeros << "  " << item.first << endl;
         }
     }
 }
@@ -153,22 +151,48 @@ void Del_Event(string Eventos_a_Eliminar){
             }
             add(year2, guion3, month2, guion4, days2, espacio, event2);
         }
-        else()
+        else if(Comandos_V[i] == "Del"){
+            events_to_delet = Fechas_V[i];
+            Del_Event(events_to_delet);
+        }
+        else if(Comandos_V[i] == "Find"){
+            date = Fechas_V[i];
+            Find(date);
+        }
+        else if(Comandos_V[i] == "Print"){
+            print(events);
+        }
     }
     }
     void BD(){
         cout << "Input 5 to exit" << endl;
-        for(int i = 0; i != 5;){
-            cin >> Comando;
-            if(Comando == "5"){
-                i=5;
+        while(getline(cin, comando2)){
+            if(comando2 == "5"){
+                break;}
+            string Comando, Fechas;
+            int k = 0;
+            for(int i = 0 ; i < comando2.size(); ++i){
+                if(comando2[i] == ' '){
+                k +=1;
+                    if(k > 0 && k != 1){
+                        Fechas += ' ';
+                    }
+                }
+                else if(comando2[i] != ' ' && k == 0){
+                Comando += comando2[i];
+                }
+                else if(k > 0){
+                Fechas += comando2[i];
+                }
             }
-            cin.ignore();
-            getline(cin, Fechas);
+            cout << Comando<< endl;
+            cout << Fechas << endl;
             Comandos_V.push_back(Comando);
             Fechas_V.push_back(Fechas);
+            cin.clear();
         }
     }
+
     
 int main() {
     BD();
