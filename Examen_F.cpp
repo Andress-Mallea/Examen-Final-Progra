@@ -21,6 +21,7 @@ vector<string>Fechas_V;
 map<string, int> comandos;
     
 void add(string año,char guion1, string mes, char guion2, string dia, char espacio, string evento){
+    if
     int month = stoi(mes);
     int day = stoi(dia);
     if(month < 1 || month > 12){
@@ -33,7 +34,8 @@ void add(string año,char guion1, string mes, char guion2, string dia, char espa
     string fecha = año + "-" + mes + "-" + dia;
     events[evento] = fecha;
     }
-}
+    }
+    
 void print(map<string, string> m) {
     for(const auto& item : m) {
         if(item.second > "0"){
@@ -158,8 +160,34 @@ void Del_Event(string Eventos_a_Eliminar){
                 event2 += date2[t];
             }
             }
-            add(year2, guion3, month2, guion4, days2, espacio, event2);
-        }
+            if(year2.size() <= 5 && month2.size() <= 3 && days2.size() <= 3 ){
+                add(year2, guion3, month2, guion4, days2, espacio, event2);
+            }
+              else{
+                for(int y = 0; y < year2.size(); ++y){
+                    if(year2[y] < 48 || year2[y] > 57){
+                        cout << "Wrong date format: " << year2 + guion3 + month2 + guion4 + days2 << endl;
+                             break;
+                    }
+                 }
+            
+            for(int y = 0; y < month2.size(); ++y){
+                if(month2[y] < 48 || month2[y] > 57){
+                    cout << "Wrong date format: " << year2 + guion3 + month2 + guion4 + days2 << endl;
+                    break;
+                }
+            }
+            for(int y = 0; y < days2.size(); ++y){
+                if(days2[y] < 48 || days2[y] > 57){
+                    cout << "Wrong date format: " << year2 + guion3 + month2 + guion4 + days2 << endl;
+                    break;
+                }
+            }
+                if(guion3 != 45 || guion4 != 45){
+                cout << "Wrong date format: " << year2 + guion3 + month2 + guion4 + days2 << endl;}
+            }
+            }
+            
         else if(Comandos_V[i] == "Del"){
             events_to_delet = Fechas_V[i];
             Del_Event(events_to_delet);
@@ -171,6 +199,8 @@ void Del_Event(string Eventos_a_Eliminar){
         else if(Comandos_V[i] == "Print"){
             print(events);
         }
+        else if(Comandos_V[i] != "Add" && Comandos_V[i] != "Del" && Comandos_V[i] != "Find" && Comandos_V[i] != "Print")
+        cout << "Unknown command:" << Comandos_V[i] << endl;
     }
     }
     void BD(){
