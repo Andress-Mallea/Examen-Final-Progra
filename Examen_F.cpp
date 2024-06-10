@@ -1,17 +1,17 @@
 // Online C++ compiler to run C++ program online
 // Online C++ compiler to run C++ program online
-// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <map>
 #include <vector>
 #include <set>
 #include <iomanip>
+#include <string>
 
 using namespace std;
 int year, month, day, events_deleted;
 int Salida = 0;
-string event, date, deleted_date, deleted_event, events_to_delet, Comando, Fechas;
-char guio1, guio2;
+string event, date, deleted_date, deleted_event, events_to_delet, Comando, Fechas, year2, month2, days2, event2;
+char guio1, guio2 ,guion4,guion3,espacio ;
 map<string, string> events;
 map<string, string> :: iterator it ;
 map<string, string> :: iterator it2 ;
@@ -20,18 +20,17 @@ vector<string>Comandos_V;
 vector<string>Fechas_V;
 map<string, int> comandos;
     
-void add(int año,char guion1, int mes, char guion2, int dia, string evento){
-    if(mes < 1 || mes > 12){
-        cout << "Month value is invalid: " + to_string(mes) << endl;
+void add(string año,char guion1, string mes, char guion2, string dia, char espacio, string evento){
+    int month = stoi(mes);
+    int day = stoi(dia);
+    if(month < 1 || month > 12){
+        cout << "Month value is invalid: " + mes << endl;
     }
-    else if(dia < 1 || dia > 31){
-        cout << "Day value is invalid: " + to_string(dia) << endl;
+    else if(day < 1 || day > 31){
+        cout << "Day value is invalid: " + dia << endl;
     }
-    else if(mes >=1 && mes <= 12 && dia >=1 && dia <=31 && guion1 == '-' && guion2 == '-'){
-        string años = to_string(año);
-        string meses = to_string(mes); 
-        string dias = to_string(dia);
-    string fecha = años + "-" + meses + "-" + dias;
+    else if(month >=1 && month <= 12 && day >=1 && day <=31 && guion1 == '-' && guion2 == '-'){
+    string fecha = año + "-" + mes + "-" + dia;
     events[evento] = fecha;
     }
 }
@@ -124,20 +123,19 @@ void Del_Event(string Eventos_a_Eliminar){
         comandos["Exit"] = 5;
         for(int i = 0; i < Comandos_V.size(); ++i){
             if(Comandos_V[i] == "Add"){
-                string year2, month2, days2, event2;
                 string date2 = Fechas_V[i];
             int p = 0;
             for(int t = 0; t < date2.size(); ++t){
             if(date2[t] == '-'||date2[t] == ' '){
                 p += 1;
                 if(p == 1){
-                    year2 += "-";
+                    guion3 += '-';
                 }
                 else if(p == 2){
-                    month2 += "-";
+                    guion4 += '-';
                 }
                 else if(p == 3){
-                    days2 += " ";
+                    espacio += ' ';
                 }
             }
             else if(date2[t] != '-' && p < 1){
@@ -152,10 +150,10 @@ void Del_Event(string Eventos_a_Eliminar){
             else if(p == 3){
                 event2 += date2[t];
             }
-            cout << year2 << month2 << days2<< event2<< endl;
-            
             }
+            add(year2, guion3, month2, guion4, days2, espacio, event2);
         }
+        else()
     }
     }
     void BD(){
