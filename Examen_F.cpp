@@ -1,5 +1,4 @@
 // Online C++ compiler to run C++ program online
-// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <map>
 #include <vector>
@@ -116,15 +115,14 @@ int main() {
     cout << "Elija un comado a ingresar"<< endl;
     cout << "1.- Add Fecha de evento" << endl;
     cout << "2.- Delete Fecha de evento" << endl;
-    cout << "3.- Delete varias fechas de eventos"<< endl;
-    cout << "4.- Find Fecha de evento" << endl;
-    cout << "5.- Print Mostrar las fechas de eventos" << endl;
-    cout << "6.- Exit" << endl;
+    cout << "3.- Find Fecha de evento" << endl;
+    cout << "4.- Print Mostrar las fechas de eventos" << endl;
+    cout << "5.- Exit" << endl;
     int comando;
     while(comando != 6){
         cin.ignore(10, '\n');
     cin >> comando;
-    if(comando == 6){
+    if(comando == 5 ){
             break;
         }
     switch(comando){
@@ -140,14 +138,11 @@ int main() {
         Del_Event(events_to_delet);
         break;
         case 3:
-        cout << "Del ";
-        break;
-        case 4:
         cout << "Find ";
         cin >> date;
         Find(date);
         break;
-        case 5:
+        case 4:
             cout << "Print" << endl;
             print(events);
             break;
