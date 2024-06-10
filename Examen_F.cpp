@@ -1,4 +1,6 @@
 // Online C++ compiler to run C++ program online
+// Online C++ compiler to run C++ program online
+// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <map>
 #include <vector>
@@ -8,12 +10,16 @@
 using namespace std;
 int year, month, day, events_deleted;
 int Salida = 0;
-string event, date, deleted_date, deleted_event, events_to_delet;
+string event, date, deleted_date, deleted_event, events_to_delet, Comando, Fechas;
 char guio1, guio2;
 map<string, string> events;
 map<string, string> :: iterator it ;
 map<string, string> :: iterator it2 ;
 vector<string> Events;
+vector<string>Comandos_V;
+vector<string>Fechas_V;
+map<string, int> comandos;
+    
 void add(int año,char guion1, int mes, char guion2, int dia, string evento){
     if(mes < 1 || mes > 12){
         cout << "Month value is invalid: " + to_string(mes) << endl;
@@ -110,46 +116,64 @@ void Del_Event(string Eventos_a_Eliminar){
         cout << "Deleted " << events_deleted  << " events" << endl;
     }
     }
-int main() {
-    // Write C++ code here
-    cout << "Elija un comado a ingresar"<< endl;
-    cout << "1.- Add Fecha de evento" << endl;
-    cout << "2.- Delete Fecha de evento" << endl;
-    cout << "3.- Find Fecha de evento" << endl;
-    cout << "4.- Print Mostrar las fechas de eventos" << endl;
-    cout << "5.- Exit" << endl;
-    int comando;
-    while(comando != 6){
-        cin.ignore(10, '\n');
-    cin >> comando;
-    if(comando == 5 ){
-            break;
-        }
-    switch(comando){
-        case 1:
-        cout << "Add ";
-        cin >> year>>guio1>>month>>guio2>>day>>event;
-        add(year, guio1, month, guio2, day, event);
-        break;
-        case 2:
-        cout << "Del ";
-        cin.ignore();
-        getline(cin, events_to_delet);
-        Del_Event(events_to_delet);
-        break;
-        case 3:
-        cout << "Find ";
-        cin >> date;
-        Find(date);
-        break;
-        case 4:
-            cout << "Print" << endl;
-            print(events);
-            break;
-        default:
-        cout << "Unknown command: " << comando << endl;
+    void Ejecucion_De_Comandos(){
+        comandos["Add"] = 1;
+        comandos["Del"] = 2;
+        comandos["Find"] = 3;
+        comandos["Print"] = 4;
+        comandos["Exit"] = 5;
+        for(int i = 0; i < Comandos_V.size(); ++i){
+            if(Comandos_V[i] == "Add"){
+                string year2, month2, days2, event2;
+                string date2 = Fechas_V[i];
+            int p = 0;
+            for(int t = 0; t < date2.size(); ++t){
+            if(date2[t] == '-'||date2[t] == ' '){
+                p += 1;
+                if(p == 1){
+                    year2 += "-";
+                }
+                else if(p == 2){
+                    month2 += "-";
+                }
+                else if(p == 3){
+                    days2 += " ";
+                }
+            }
+            else if(date2[t] != '-' && p < 1){
+                year2 += date2[t];
+            }
+            else if(date2[t] != '-' && p < 2){
+                month2 += date2[t];
+            }
+            else if(date2[t] != ' ' && p < 3){
+                days2 += date2[t];
+            }
+            else if(p == 3){
+                event2 += date2[t];
+            }
+            cout << year2 << month2 << days2<< event2<< endl;
             
+            }
+        }
     }
     }
+    void BD(){
+        cout << "Input 5 to exit" << endl;
+        for(int i = 0; i != 5;){
+            cin >> Comando;
+            if(Comando == "5"){
+                i=5;
+            }
+            cin.ignore();
+            getline(cin, Fechas);
+            Comandos_V.push_back(Comando);
+            Fechas_V.push_back(Fechas);
+        }
+    }
+    
+int main() {
+    BD();
+    Ejecucion_De_Comandos();
     return 0;
 }
