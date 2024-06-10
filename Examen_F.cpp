@@ -1,3 +1,5 @@
+// Online C++ compiler to run C++ program online
+// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <map>
 #include <vector>
@@ -122,18 +124,25 @@ void Del_Event(string Eventos_a_Eliminar){
         for(int i = 0; i < Comandos_V.size(); ++i){
             if(Comandos_V[i] == "Add"){
                 string date2 = Fechas_V[i];
+                year2 = "";
+                month2 = "";
+                days2 = "";
+                event2 = "";
+                guion3 =' ';
+                guion4 =' ';
+                espacio = ' ';
             int p = 0;
             for(int t = 0; t < date2.size(); ++t){
             if(date2[t] == '-'||date2[t] == ' '){
                 p += 1;
                 if(p == 1){
-                    guion3 += '-';
+                    guion3 = '-';
                 }
                 else if(p == 2){
-                    guion4 += '-';
+                    guion4 = '-';
                 }
                 else if(p == 3){
-                    espacio += ' ';
+                    espacio = ' ';
                 }
             }
             else if(date2[t] != '-' && p < 1){
@@ -185,8 +194,6 @@ void Del_Event(string Eventos_a_Eliminar){
                 Fechas += comando2[i];
                 }
             }
-            cout << Comando<< endl;
-            cout << Fechas << endl;
             Comandos_V.push_back(Comando);
             Fechas_V.push_back(Fechas);
             cin.clear();
