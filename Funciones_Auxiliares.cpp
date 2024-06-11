@@ -1,15 +1,19 @@
 
+
 #include "Examen_F.h"
 
 void Date_Check(string a){
     date_to_check = "";
-    string Year_Prueba,  Month_Prueba, Day_Prueba;
+    string Year_Prueba,  Month_Prueba, Day_Prueba, event_Prueba;
     Variable_Control_2 = 0;
-    for(int i = 0; i <= a.size(); ++i){
-        if(a[i] == ' '){
-            break;
+    Variable_Control_5 = 0;
+    for(int i = 0; i < a.size(); i++){
+        if(Variable_Control_5 == 0){
+            date_to_check += a[i];
         }
-        date_to_check += a[i];
+        if(a[i] == ' '){
+            Variable_Control_5 += 1;
+        }
     }
     Variable_Control_1 = 0;
     for(int o = 0; o <= date_to_check.size(); ++o){

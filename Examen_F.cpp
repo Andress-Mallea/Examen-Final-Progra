@@ -1,4 +1,5 @@
 #include "Examen_F.h"
+#include "Funciones_Adicionales.cpp"
 using namespace std;
 void add(string año,char guion1, string mes, char guion2, string dia, char espacio, string evento){
     mes_to_add = stoi(mes);
@@ -144,7 +145,7 @@ void Ejecucion_De_Comandos(){
         }
         else if(Comandos_V[i] == "Find"){
             date_to_find = Fechas_V[i];
-            Find(date);
+            Find(date_to_find);
         }
         else if(Comandos_V[i] == "Print"){
             print(events);
