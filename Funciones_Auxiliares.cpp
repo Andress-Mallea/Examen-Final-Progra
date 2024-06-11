@@ -2,18 +2,46 @@
 #include "Examen_F.h"
 
 void Date_Check(string a){
-    int Variable_Control_1 = 0;
-    for(int o = 0; o <= a.size(); ++o){
-        if(a[0] == 45){
-             Year_Prueba += a[0];
-            for(int i =1; i < a.size() ; ++i){
-                if(a[i] < 48 && a[i] > 57 && a[i] != '-'){
-                    cout << "Wrong date format: " << a << endl;
+    date_to_check = "";
+    for(int i = 0; i <= a.size(); ++i){
+        if(a[i] == ' '){
+            break;
+        }
+        date_to_check += a[i];
+    }
+    Variable_Control_1 = 0;
+    for(int o = 0; o <= date_to_check.size(); ++o){
+        if(date_to_check[0] == 45){
+             Year_Prueba += date_to_check[0];
+            for(int i =1; i < date_to_check.size() ; ++i){
+                if(date_to_check[i] < 48 && date_to_check[i] > 57 && date_to_check[i] != '-'){
+                    cout << "Wrong date format: " << date_to_check << endl;
                     Variable_Control_2 -= 1;
                     Year_Prueba = "";
                     break;
                 }
-                else if(a[i] != '-' && Variable_Control_1 == 0 && a[i] >= 48 && a[i] <=57){
+                else if(date_to_check[i] != '-' && Variable_Control_1 == 0 && date_to_check[i] >= 48 && date_to_check[i] <=57){
+                    Year_Prueba += date_to_check[i];
+                    Variable_Control_2 += 1;
+                    ++o;
+                }
+                 else if(date_to_check[i] == '-' && Variable_Control_1 == 0){
+                    Variable_Control_1 += 1;
+                    Variable_Control_2 += 1;
+                    ++o;
+                }
+            }
+        }
+        else if(date_to_check[0] == 43){
+             Year_Prueba += date_to_check[0];
+            for(int i =1; i < date_to_check.size() ; ++i){
+                if(date_to_check[i] < 48 && date_to_check[i] > 57 && date_to_check[i] != '-'){
+                    cout << "Wrong date format: " << date_to_check << endl;
+                    Year_Prueba = "";
+                    Variable_Control_2 -= 1;
+                    break;
+                }
+                else if(date_to_check[i] != '-' && Variable_Control_1 == 0 && a[i] >= 48 && a[i] <=57){
                     Year_Prueba += a[i];
                     Variable_Control_2 += 1;
                     ++o;
@@ -25,69 +53,48 @@ void Date_Check(string a){
                 }
             }
         }
-        else if(a[0] == 43){
-             Year_Prueba += a[0];
-            for(int i =1; i < a.size() ; ++i){
-                if(a[i] < 48 && a[i] > 57 && a[i] != '-'){
-                    cout << "Wrong date format: " << a << endl;
+        else if(date_to_check[o] >= 48 && date_to_check[o] <=57){
+            Year_Prueba += date_to_check[0];
+            for(int i =1; i < date_to_check.size() ; ++i){
+                if(date_to_check[i] < 48 && date_to_check[i] > 57 && date_to_check[i] != '-'){
+                    cout << "Wrong date format: " << date_to_check << endl;
                     Year_Prueba = "";
                     Variable_Control_2 -= 1;
                     break;
                 }
-                else if(a[i] != '-' && Variable_Control_1 == 0 && a[i] >= 48 && a[i] <=57){
-                    Year_Prueba += a[i];
+                else if(date_to_check[i] != '-' && Variable_Control_1 == 0 && date_to_check[i] >= 48 && date_to_check[i] <=57){
+                    Year_Prueba += date_to_check[i];
                     Variable_Control_2 += 1;
                     ++o;
                 }
-                 else if(a[i] == '-' && Variable_Control_1 == 0){
+                else if(date_to_check[i] == '-' && Variable_Control_1 == 0){
                     Variable_Control_1 += 1;
                     Variable_Control_2 += 1;
                     ++o;
                 }
             }
         }
-        else if(a[o] >= 48 && a[o] <=57){
-            Year_Prueba += a[0];
-            for(int i =1; i < a.size() ; ++i){
-                if(a[i] < 48 && a[i] > 57 && a[i] != '-'){
-                    cout << "Wrong date format: " << a << endl;
-                    Year_Prueba = "";
-                    Variable_Control_2 -= 1;
-                    break;
-                }
-                else if(a[i] != '-' && Variable_Control_1 == 0 && a[i] >= 48 && a[i] <=57){
-                    Year_Prueba += a[i];
-                    Variable_Control_2 += 1;
-                    ++o;
-                }
-                else if(a[i] == '-' && Variable_Control_1 == 0){
-                    Variable_Control_1 += 1;
-                    Variable_Control_2 += 1;
-                    ++o;
-                }
-            }
-        }
-        else if(a[0] < 48 || a[0] > 57){
-            cout << "Wrong date format: " << a << endl;
+        else if(date_to_check[0] < 48 || date_to_check[0] > 57){
+            cout << "Wrong date format: " << date_to_check << endl;
             Variable_Control_2 -= 1;
             break;
         }
         if(Variable_Control_1 == 1){
             o += 1;
-            if(a[o] >= 48 && a[o] <=57){
-                for(int i = o; i < a.size() ; ++i){
-                        if(a[i] < 48 && a[i] > 57 && a[i] != '-' && Variable_Control_1 == 1){
-                            cout << "Wrong date format: " << a << endl;
+            if(date_to_check[o] >= 48 && date_to_check[o] <=57){
+                for(int i = o; i < date_to_check.size() ; ++i){
+                        if(date_to_check[i] < 48 && date_to_check[i] > 57 && date_to_check[i] != '-' && Variable_Control_1 == 1){
+                            cout << "Wrong date format: " << date_to_check << endl;
                             Month_Prueba = "";
                             Variable_Control_2 -= 1;
                             break;
                         }
-                        else if(a[i] != '-' && Variable_Control_1 == 1 && a[i] >= 48 && a[i] <=57){
-                            Month_Prueba += a[i];
+                        else if(date_to_check[i] != '-' && Variable_Control_1 == 1 && date_to_check[i] >= 48 && date_to_check[i] <=57){
+                            Month_Prueba += date_to_check[i];
                             Variable_Control_2 += 1;
                             ++o;
                         }
-                        else if(a[i] == '-' && Variable_Control_1 == 1){
+                        else if(date_to_check[i] == '-' && Variable_Control_1 == 1){
                             Variable_Control_1 += 1;
                             Variable_Control_2 += 1;
                             ++o;
@@ -108,20 +115,20 @@ void Date_Check(string a){
         }
         if (Variable_Control_1 == 2)
         {
-            if(a[o] >= 48 && a[o] <=57){
-                for(int i = o; i <= a.size() ; ++i){
-                    if(a[i] < 48 && a[i] > 57 && a[i] != '-'){
+            if(date_to_check[o] >= 48 && date_to_check[o] <=57){
+                for(int i = o; i <= date_to_check.size() ; ++i){
+                    if(date_to_check[i] < 48 && date_to_check[i] > 57 && date_to_check[i] != '-'){
                         cout << "Wrong date format: " << a << endl;
                         Day_Prueba = "";
                         Variable_Control_2 -= 1;
                         break;
                     }
-                    else if(a[i] != '-' && Variable_Control_1 == 2 && a[i] >= 48 && a[i] <=57){
-                        Day_Prueba += a[i];
+                    else if(date_to_check[i] != '-' && Variable_Control_1 == 2 && date_to_check[i] >= 48 && date_to_check[i] <=57){
+                        Day_Prueba += date_to_check[i];
                         Variable_Control_2 += 1;
                         ++o;
                     }
-                    else if(a[i] == ' '){
+                    else if(date_to_check[i] == ' '){
                         Variable_Control_1 += 1;
                         Variable_Control_2 += 1;
                         ++o;

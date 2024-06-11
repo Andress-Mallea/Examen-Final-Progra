@@ -1,17 +1,11 @@
 #include "Examen_F.h"
-
+using namespace std;
 void add(string año,char guion1, string mes, char guion2, string dia, char espacio, string evento){
-    int month = stoi(mes);
-    int day = stoi(dia);
-    if(month < 1 || month > 12){
-        cout << "Month value is invalid: " + mes << endl;
-    }
-    else if(day < 1 || day > 31){
-        cout << "Day value is invalid: " + dia << endl;
-    }
-    else if(month >=1 && month <= 12 && day >=1 && day <=31 && guion1 == '-' && guion2 == '-'){
-    string fecha = año + "-" + mes + "-" + dia;
-    events[evento] = fecha;
+    mes_to_add = stoi(mes);
+    dia_to_add = stoi(dia);
+    if(mes_to_add >=1 && mes_to_add <= 12 && dia_to_add >=1 && dia_to_add <=31 && guion1 == '-' && guion2 == '-'){
+    fecha_to_add = año + "-" + mes + "-" + dia;
+    events[evento] = fecha_to_add;
     }
     }
     
@@ -20,18 +14,18 @@ void print(map<string, string> m) {
         if(item.second > "0"){
         string fechas = item.second;
         string año_con_zeros, mes_con_zeros, dia_con_zeros;
-        int p = 0;
+        Variable_Control_4 = 0;
         for(int i = 0; i < fechas.size(); ++i){
             if(fechas[i] == '-'){
-                p += 1;
+                Variable_Control_4 += 1;
             }
-            else if(fechas[i] != '-' && p < 1){
+            else if(fechas[i] != '-' && Variable_Control_4 < 1){
                 año_con_zeros += fechas[i];
             }
-            else if(fechas[i] != '-' && p < 2){
+            else if(fechas[i] != '-' && Variable_Control_4 < 2){
                 mes_con_zeros += fechas[i];
             }
-            else if( p == 2){
+            else if( Variable_Control_4 == 2){
                 dia_con_zeros += fechas[i];
             }
         }
@@ -62,14 +56,14 @@ void Find(string dates){
     }
 }
 void Del_Event(string Eventos_a_Eliminar){
-    string Evento_a_Eliminar;
-    int p = 0;
+    Evento_a_Eliminar = "";
+    Variable_Control_3 = 0;
     for(int i = 0; i < Eventos_a_Eliminar.size(); i++){
-        if(p == 1){
+        if(Variable_Control_3 == 1){
             Evento_a_Eliminar += Eventos_a_Eliminar[i];
         }
         else if(Eventos_a_Eliminar[i] == ' '){
-            p += 1;
+            Variable_Control_3 += 1;
         }
     }
     if(Evento_a_Eliminar > "0"){
@@ -104,66 +98,43 @@ void Ejecucion_De_Comandos(){
         comandos["Exit"] = 5;
         for(int i = 0; i < Comandos_V.size(); ++i){
             if(Comandos_V[i] == "Add"){
-                string date2 = Fechas_V[i];
-                year2 = "";
-                month2 = "";
-                days2 = "";
-                event2 = "";
-                guion3 =' ';
-                guion4 =' ';
-                espacio = ' ';
+                string date_to_add = Fechas_V[i];
+                year_to_add = "";
+                month_to_add = "";
+                day_to_add = "";
+                event_to_add = "";
+                guion_to_add_1 =' ';
+                guion_to_add_2 =' ';
+                espacio_to_add = ' ';
             int p = 0;
-            for(int t = 0; t < date2.size(); ++t){
-            if(date2[t] == '-'||date2[t] == ' '){
+            for(int t = 0; t < date_to_add.size(); ++t){
+            if(date_to_add[t] == '-'||date_to_add[t] == ' '){
                 p += 1;
                 if(p == 1){
-                    guion3 = '-';
+                    guion_to_add_1 = '-';
                 }
                 else if(p == 2){
-                    guion4 = '-';
+                    guion_to_add_2 = '-';
                 }
                 else if(p == 3){
-                    espacio = ' ';
+                    espacio_to_add = ' ';
                 }
             }
-            else if(date2[t] != '-' && p < 1){
-                year2 += date2[t];
+            else if(date_to_add[t] != '-' && p < 1){
+                year_to_add += date_to_add[t];
             }
-            else if(date2[t] != '-' && p < 2){
-                month2 += date2[t];
+            else if(date_to_add[t] != '-' && p < 2){
+                month_to_add += date_to_add[t];
             }
-            else if(date2[t] != ' ' && p < 3){
-                days2 += date2[t];
+            else if(date_to_add[t] != ' ' && p < 3){
+                day_to_add += date_to_add[t];
             }
             else if(p == 3){
-                event2 += date2[t];
+                event_to_add += date_to_add[t];
             }
             }
-            if(year2.size() <= 5 && month2.size() <= 3 && days2.size() <= 3 ){
-                add(year2, guion3, month2, guion4, days2, espacio, event2);
-            }
-              else{
-                for(int y = 0; y < year2.size(); ++y){
-                    if(year2[y] < 48 || year2[y] > 57){
-                        cout << "Wrong date format: " << year2 + guion3 + month2 + guion4 + days2 << endl;
-                             break;
-                    }
-                 }
-            
-            for(int y = 0; y < month2.size(); ++y){
-                if(month2[y] < 48 || month2[y] > 57){
-                    cout << "Wrong date format: " << year2 + guion3 + month2 + guion4 + days2 << endl;
-                    break;
-                }
-            }
-            for(int y = 0; y < days2.size(); ++y){
-                if(days2[y] < 48 || days2[y] > 57){
-                    cout << "Wrong date format: " << year2 + guion3 + month2 + guion4 + days2 << endl;
-                    break;
-                }
-            }
-                if(guion3 != 45 || guion4 != 45){
-                cout << "Wrong date format: " << year2 + guion3 + month2 + guion4 + days2 << endl;}
+            if(year_to_add.size() <= 5 && month2.size() <= 3 && days2.size() <= 3 ){
+                add(year_to_add, guion_to_add_1, month_to_add, guion_to_add_2, day_to_add, espacio_to_add, event_to_add);
             }
             }
             
@@ -172,7 +143,7 @@ void Ejecucion_De_Comandos(){
             Del_Event(events_to_delet);
         }
         else if(Comandos_V[i] == "Find"){
-            date = Fechas_V[i];
+            date_to_find = Fechas_V[i];
             Find(date);
         }
         else if(Comandos_V[i] == "Print"){
@@ -203,9 +174,14 @@ void BD(){
                 Fechas += comando2[i];
                 }
             }
-            Date_Check(Fechas);
-            if(Variable_Control_2 == Fechas.size() - 1){
-                Fechas_V.push_back(Fechas);
+            if( Fechas != ""){
+                Date_Check(Fechas);
+                if(Variable_Control_2 == date_to_check.size() - 1){
+                    Fechas_V.push_back(Fechas);
+                }
+                else if (Variable_Control_2 != date_to_check.size() - 1){
+                    break;
+                }
             }
             Comandos_V.push_back(Comando);
             cin.clear();
