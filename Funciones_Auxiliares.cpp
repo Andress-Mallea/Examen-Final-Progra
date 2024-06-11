@@ -3,6 +3,8 @@
 
 void Date_Check(string a){
     date_to_check = "";
+    string Year_Prueba,  Month_Prueba, Day_Prueba;
+    Variable_Control_2 = 0;
     for(int i = 0; i <= a.size(); ++i){
         if(a[i] == ' '){
             break;
@@ -149,5 +151,5 @@ void Date_Check(string a){
         }
         
     }
-
+    
 }
