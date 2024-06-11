@@ -1,27 +1,6 @@
-// Online C++ compiler to run C++ program online
-// Online C++ compiler to run C++ program online
-#include <iostream>
-#include <map>
-#include <vector>
-#include <set>
-#include <iomanip>
-#include <string>
+#include "Examen_F.h"
 
-using namespace std;
-int year, month, day, events_deleted;
-int Salida = 0;
-string event, date, deleted_date, deleted_event, events_to_delet, Comando, Fechas, year2, month2, days2, event2, comando2;
-char guio1, guio2 ,guion4,guion3,espacio ;
-map<string, string> events;
-map<string, string> :: iterator it ;
-map<string, string> :: iterator it2 ;
-vector<string> Events;
-vector<string>Comandos_V;
-vector<string>Fechas_V;
-map<string, int> comandos;
-    
 void add(string año,char guion1, string mes, char guion2, string dia, char espacio, string evento){
-    if
     int month = stoi(mes);
     int day = stoi(dia);
     if(month < 1 || month > 12){
@@ -117,7 +96,7 @@ void Del_Event(string Eventos_a_Eliminar){
         cout << "Deleted " << events_deleted  << " events" << endl;
     }
     }
-    void Ejecucion_De_Comandos(){
+void Ejecucion_De_Comandos(){
         comandos["Add"] = 1;
         comandos["Del"] = 2;
         comandos["Find"] = 3;
@@ -203,7 +182,7 @@ void Del_Event(string Eventos_a_Eliminar){
         cout << "Unknown command:" << Comandos_V[i] << endl;
     }
     }
-    void BD(){
+void BD(){
         cout << "Input 5 to exit" << endl;
         while(getline(cin, comando2)){
             if(comando2 == "5"){
@@ -224,15 +203,11 @@ void Del_Event(string Eventos_a_Eliminar){
                 Fechas += comando2[i];
                 }
             }
+            Date_Check(Fechas);
+            if(Variable_Control_2 == Fechas.size() - 1){
+                Fechas_V.push_back(Fechas);
+            }
             Comandos_V.push_back(Comando);
-            Fechas_V.push_back(Fechas);
             cin.clear();
         }
     }
-
-    
-int main() {
-    BD();
-    Ejecucion_De_Comandos();
-    return 0;
-}
