@@ -15,7 +15,6 @@ map<string, string> events;
 vector<string> Events;
 vector<string>Comandos_V;
 vector<string>Fechas_V;
-vector<string>Events_Delted;
 map<string, int> comandos;
 //Variable Funcion Ejecucion_De_Comandos
 char guion_to_add_1, guion_to_add_2, espacio_to_add ;

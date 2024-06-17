@@ -1,5 +1,4 @@
 
-
 #include "Examen_F.h"
 
 void Date_Check(string a){
@@ -157,4 +156,3 @@ void Date_Check(string a){
     }
     
 }
-

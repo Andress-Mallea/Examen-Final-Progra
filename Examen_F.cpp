@@ -1,5 +1,4 @@
 #include "Examen_F.h"
-#include "Funciones_Adicionales.cpp"
 using namespace std;
 void add(string año,char guion1, string mes, char guion2, string dia, char espacio, string evento){
     mes_to_add = stoi(mes);
@@ -92,14 +91,10 @@ void Del_Event(string Eventos_a_Eliminar){
     }
     }
 void Ejecucion_De_Comandos(){
-        comandos["Add"] = 1;
-        comandos["Del"] = 2;
-        comandos["Find"] = 3;
-        comandos["Print"] = 4;
-        comandos["Exit"] = 5;
+    int variable_de_control_6 = 0;
         for(int i = 0; i < Comandos_V.size(); ++i){
             if(Comandos_V[i] == "Add"){
-                string date_to_add = Fechas_V[i];
+                string date_to_add = Fechas_V[variable_de_control_6];
                 year_to_add = "";
                 month_to_add = "";
                 day_to_add = "";
@@ -140,17 +135,20 @@ void Ejecucion_De_Comandos(){
 
             if(year_to_add.size() <= 5 && month2.size() <= 3 && days2.size() <= 3 ){
                 add(year_to_add, guion_to_add_1, month_to_add, guion_to_add_2, day_to_add, espacio_to_add, event_to_add);
+                variable_de_control_6 += 1;
             }
             }
             
         else if(Comandos_V[i] == "Del"){
-            events_to_delet = Fechas_V[i];
+            events_to_delet = Fechas_V[variable_de_control_6];
             Del_Event(events_to_delet);
+            variable_de_control_6 += 1;
             
         }
         else if(Comandos_V[i] == "Find"){
-            date_to_find = Fechas_V[i];
+            date_to_find = Fechas_V[variable_de_control_6];
             Find(date_to_find);
+            variable_de_control_6 += 1;
         }
         else if(Comandos_V[i] == "Print"){
             print(events);
@@ -163,7 +161,7 @@ void Ejecucion_De_Comandos(){
     }
 void BD(){
         cout << "Input 5 to exit" << endl;
-        while(getline(cin, Command)){
+        while(std ::getline(std ::cin, Command)){
             if(Command == "5"){
                 break;}
             string Comando, Fechas;
@@ -192,6 +190,6 @@ void BD(){
                 }
             }
             Comandos_V.push_back(Comando);
-            cin.clear();
+            std :: cin.clear();
         }
     }
