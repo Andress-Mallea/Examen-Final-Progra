@@ -55,6 +55,7 @@ Esta función lo que hace es la ejecución de los diversos comandos dados por el
 Esta función es la encargada de la comunicación con el usuario por medio del flujo estándar en un loop "infinito" para escribir los distintos comandos a ejecutar
 ## Diagramas
 ### Del_Event
+Esta funcion lo que hace es en base a el stri g inicial lo separa entre la fecha y el evento. Una vez separados ve si se introdujo o no un evento especifico. En caso de no tener un evento este pasa a borrar a todos los eventos ligados con la fecha indicada.
 ![](Diagramas_De_Flujo/Del_Function.drawio.png)
 ### Ejecution_De_Comandos
 ![](Diagramas_De_Flujo/Ejecucion_de_comandos.drawio.png)
