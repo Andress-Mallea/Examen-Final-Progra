@@ -54,4 +54,24 @@ Esta función lo que hace es la ejecución de los diversos comandos dados por el
 ●BD:
 Esta función es la encargada de la comunicación con el usuario por medio del flujo estándar en un loop "infinito" para escribir los distintos comandos a ejecutar
 ## Diagramas
-!{}()
+### Del_Event
+![](Diagramas_De_Flujo/Del_Function.drawio.png)
+### Ejecution_De_Comandos
+![](Diagramas_De_Flujo/Ejecucion_de_comandos.drawio.png)
+### Find
+![](Diagramas_De_Flujo/Find.drawio.png)
+### Data_Check
+![](Diagramas_De_Flujo/Funcion%20Data_Check.drawio.png)
+### BD
+![](Diagramas_De_Flujo/Funcion_BD.drawio.png)
+### add
+![](Diagramas_De_Flujo/add%20funcion.drawio.png)
+### print
+![](Diagramas_De_Flujo/print.drawio.png)
+## Herramientas Utilizadas
+Estas fueron
+Visual Code Studio
+Google
+Git hub
+Git bash
+Programiz
