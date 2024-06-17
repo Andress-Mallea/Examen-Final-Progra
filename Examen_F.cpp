@@ -133,7 +133,11 @@ void Ejecucion_De_Comandos(){
             else if(p == 3){
                 event_to_add += date_to_add[t];
             }
+            if(p > 3){
+                event_to_add += date_to_add[t];
             }
+            }
+
             if(year_to_add.size() <= 5 && month2.size() <= 3 && days2.size() <= 3 ){
                 add(year_to_add, guion_to_add_1, month_to_add, guion_to_add_2, day_to_add, espacio_to_add, event_to_add);
             }
