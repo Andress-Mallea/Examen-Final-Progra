@@ -142,6 +142,7 @@ void Ejecucion_De_Comandos(){
         else if(Comandos_V[i] == "Del"){
             events_to_delet = Fechas_V[i];
             Del_Event(events_to_delet);
+            
         }
         else if(Comandos_V[i] == "Find"){
             date_to_find = Fechas_V[i];
@@ -150,29 +151,31 @@ void Ejecucion_De_Comandos(){
         else if(Comandos_V[i] == "Print"){
             print(events);
         }
-        else if(Comandos_V[i] != "Add" && Comandos_V[i] != "Del" && Comandos_V[i] != "Find" && Comandos_V[i] != "Print")
-        cout << "Unknown command:" << Comandos_V[i] << endl;
+        else if(Comandos_V[i] != "Add" && Comandos_V[i] != "Del" && Comandos_V[i] != "Find" && Comandos_V[i] != "Print" && Comandos_V[i] != "\n"){
+        string check_space = Comandos_V[i];
+        if(check_space != ""){
+        cout << "Unknown command:" << Comandos_V[i] << endl;}}
     }
     }
 void BD(){
         cout << "Input 5 to exit" << endl;
-        while(getline(cin, comando2)){
-            if(comando2 == "5"){
+        while(getline(cin, Command)){
+            if(Command == "5"){
                 break;}
             string Comando, Fechas;
             int k = 0;
-            for(int i = 0 ; i < comando2.size(); ++i){
-                if(comando2[i] == ' '){
+            for(int i = 0 ; i < Command.size(); ++i){
+                if(Command[i] == ' '){
                 k +=1;
                     if(k > 0 && k != 1){
                         Fechas += ' ';
                     }
                 }
-                else if(comando2[i] != ' ' && k == 0){
-                Comando += comando2[i];
+                else if(Command[i] != ' ' && k == 0){
+                Comando += Command[i];
                 }
                 else if(k > 0){
-                Fechas += comando2[i];
+                Fechas += Command[i];
                 }
             }
             if( Fechas != ""){
